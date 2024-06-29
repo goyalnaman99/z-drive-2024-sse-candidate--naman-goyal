@@ -35,7 +35,7 @@
     container.innerHTML = '';
     const table = document.createElement('table');
     table.classList.add('table', 'table-striped', 'table-bordered');
-    const thead = document.createElement('thead');
+    const thead = document.createElement('thead'); //TODO: Making header fixed
     const tbody = document.createElement('tbody');
 
     const headerRow = document.createElement('tr');
@@ -94,6 +94,7 @@
   }
 
   function sortTable(key){
+    //TODO: selection of sortDirection
     let sortDirection = 'asc';
     filteredData.sort((a, b) => {
       if(a[key] < b[key]) return sortDirection === 'asc' ? '-1' : '1';
@@ -125,6 +126,8 @@
       currentPage++;
       createTable();
     })
+
+    //TODO: creation of numbered page buttons
 
     pagination.appendChild(prevButton);
     pagination.appendChild(nextButton);
