@@ -66,19 +66,19 @@
       filterRow.appendChild(filterTh);
       thead.appendChild(headerRow);
       thead.appendChild(filterRow);
-
-      //render rows
-      filteredData.slice((currentPage - 1) * rowsPerPage, (currentPage * rowsPerPage)).forEach(row => {
-        const tr = document.createElement('tr');
-        columns.forEach(column => {
-          const td = document.createElement('td');
-          td.textContent = row[column?.key];
-          td.dataset.label = column.label;
-          tr.appendChild(td);
-        })
-        tbody.append(tr);
-      })
     })
+    //render rows
+    filteredData.slice((currentPage - 1) * rowsPerPage, (currentPage * rowsPerPage)).forEach(row => {
+      const tr = document.createElement('tr');
+      columns.forEach(column => {
+        const td = document.createElement('td');
+        td.textContent = row[column?.key];
+        td.dataset.label = column.label;
+        tr.appendChild(td);
+      })
+      tbody.append(tr);
+    })
+
     table.appendChild(thead);
     table.appendChild(tbody);
     container.appendChild(table);
