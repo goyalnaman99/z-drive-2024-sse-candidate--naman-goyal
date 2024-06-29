@@ -56,8 +56,10 @@
         input.type = 'text';
         input.placeholder = `Search ${column.label}`;
         input.classList.add('form-control', 'mt-2');
-        input.addEventListener('input', (e) => {
-          filterTable(column.key, e.target.value)
+        input.addEventListener('keypress', (e) => {
+          if(e.key == 'Enter'){
+            filterTable(column.key, e.target.value)
+          }
         });
         filterTh.appendChild(input);
       }
