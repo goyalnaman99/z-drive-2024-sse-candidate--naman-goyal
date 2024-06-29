@@ -16,7 +16,6 @@
     try {
       const response = await fetch('https://restcountries.com/v3.1/all');
       const data = await response.json();
-      // console.log(data);
       originalData = data.map(country => ({
         name: country.name.official,
         region: country.region,
@@ -25,7 +24,6 @@
         capital: country.capital?.[0]
       }))
       filteredData = [...originalData];
-      console.log(filteredData);
       createTable();
     } catch (error) {
       console.error('Error fetching data: ', error);
@@ -70,7 +68,7 @@
       thead.appendChild(filterRow);
 
       //render rows
-      filteredData.forEach(row => {
+      filteredData.slice((currentPage - 1) * rowsPerPage, (currentPage * rowsPerPage)).forEach(row => {
         const tr = document.createElement('tr');
         columns.forEach(column => {
           const td = document.createElement('td');
@@ -84,6 +82,8 @@
     table.appendChild(thead);
     table.appendChild(tbody);
     container.appendChild(table);
+
+    createPagination();
   }
 
   function filterTable(key, value){
